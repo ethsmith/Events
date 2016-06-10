@@ -1,0 +1,10 @@
+name: Events
+version: 1.0
+main: com.Wato133.events.Events
+author: TekkitCommando
+description: Events plugin
+
+commands:
+    events:
+        usage: /<command>
+        description: Prints out event info.
