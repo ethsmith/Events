@@ -1,21 +1,31 @@
 package com.Wato133.events;
 
+import java.io.File;
+import java.io.IOException;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Events extends JavaPlugin {
 	
 	public void onEnable() {
-		getConfig().options().copyDefaults();
+		saveConfig();
+		try {
+			setupConfig(getConfig());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		saveConfig();
 		Bukkit.getServer().getLogger().info("[Events] Events enabled!");
 	}
 	
 	public void onDisable() {
+		saveConfig();
 		Bukkit.getServer().getLogger().info("[Events] Events disabled!");
 	}
 	
@@ -50,5 +60,17 @@ public class Events extends JavaPlugin {
 			}
 		}
 		return true;
+	}
+	
+	private void setupConfig(FileConfiguration config) throws IOException {
+		if(!new File(getDataFolder(), "RESET.FILE").exists()) {
+			new File(getDataFolder(), "RESET.FILE").createNewFile();
+			
+			config.set("EventHeader", "&1Events");
+			config.set("EventTitle", "&3Example Title");
+			config.set("EventInfo", "&3This is an example event.");
+			
+			new File(getDataFolder(), "RESET.FILE").createNewFile();
+		}
 	}
 }
