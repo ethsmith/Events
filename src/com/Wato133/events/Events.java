@@ -38,10 +38,10 @@ public class Events extends JavaPlugin {
 			if(cmd.getName().equalsIgnoreCase("events") && args.length == 0) {
 				if(player.hasPermission("events.info")) {
 					String Title = getConfig().getString("EventHeader");
-					player.sendMessage(Title.replace("&", "\u007a"));
+					player.sendMessage(Title.replace("&", "\u00A7"));
 					player.sendMessage("***************************************************************");
-					player.sendMessage(getConfig().getString("EventTitle").replace("&", "\u007a"));
-					player.sendMessage(getConfig().getString("EventInfo").replace("&", "\u007a"));
+					player.sendMessage(getConfig().getString("EventTitle").replace("&", "\u00A7"));
+					player.sendMessage(getConfig().getString("EventInfo").replace("&", "\u00A7"));
 					player.sendMessage("***************************************************************");
 				} else {
 					player.sendMessage(ChatColor.RED + "[Events] You do not have permission to use that command!");
